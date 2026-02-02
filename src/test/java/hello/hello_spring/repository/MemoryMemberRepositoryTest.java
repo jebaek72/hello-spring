@@ -7,10 +7,13 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
+
+// test 하나 끝나면 store 비우기 : 실행 순서에 따른 오류 방지
     @AfterEach
     public void afterEach() {
         repository.clearStore();
     }
+
     @Test
     public void save() {
 //given
@@ -22,6 +25,7 @@ class MemoryMemberRepositoryTest {
         Member result = repository.findById(member.getId()).get();
         assertThat(result).isEqualTo(member);
     }
+
     @Test
     public void findByName() {
 //given
@@ -36,6 +40,7 @@ class MemoryMemberRepositoryTest {
 //then
         assertThat(result).isEqualTo(member1);
     }
+    
     @Test
     public void findAll() {
 //given
